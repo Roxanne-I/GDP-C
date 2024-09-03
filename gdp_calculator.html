@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive GDP Calculator 📊</title>
+</head>
+<body>
+    <h1>GDP and National Income Calculator 📈</h1>
+
+    <!-- Input Fields -->
+    <h2>Inputs:</h2>
+    <label for="gdpMarket">GDP at Market Price:</label>
+    <input type="number" id="gdpMarket"><br><br>
+
+    <label for="indirectTaxes">Indirect Taxes:</label>
+    <input type="number" id="indirectTaxes"><br><br>
+
+    <label for="subsidies">Subsidies:</label>
+    <input type="number" id="subsidies"><br><br>
+
+    <label for="netFactorIncome">Net Factor Income from Abroad:</label>
+    <input type="number" id="netFactorIncome"><br><br>
+
+    <label for="depreciation">Depreciation:</label>
+    <input type="number" id="depreciation"><br><br>
+
+    <!-- Calculate Button -->
+    <h2>Results:</h2>
+    <button onclick="calculate()">Calculate</button><br><br>
+
+    <!-- Result Display -->
+    <p>GDP at Factor Cost: <span id="gdpFactor"></span></p>
+    <p>GNP at Market Price: <span id="gnpMarket"></span></p>
+    <p>GNP at Factor Cost: <span id="gnpFactor"></span></p>
+    <p>National Income: <span id="nationalIncome"></span></p>
+
+    <!-- JavaScript Code -->
+    <script>
+        function calculate() {
+            // Input values
+            const gdpMarket = parseFloat(document.getElementById('gdpMarket').value);
+            const indirectTaxes = parseFloat(document.getElementById('indirectTaxes').value);
+            const subsidies = parseFloat(document.getElementById('subsidies').value);
+            const netFactorIncome = parseFloat(document.getElementById('netFactorIncome').value);
+            const depreciation = parseFloat(document.getElementById('depreciation').value);
+
+            // Calculations
+            const gdpFactorCost = gdpMarket - indirectTaxes + subsidies;
+            const gnpMarketPrice = gdpMarket + netFactorIncome;
+            const gnpFactorCost = gnpMarketPrice - indirectTaxes + subsidies;
+            const nationalIncome = gnpFactorCost - depreciation;
+
+            // Display results
+            document.getElementById('gdpFactor').innerText = gdpFactorCost.toFixed(2);
+            document.getElementById('gnpMarket').innerText = gnpMarketPrice.toFixed(2);
+            document.getElementById('gnpFactor').innerText = gnpFactorCost.toFixed(2);
+            document.getElementById('nationalIncome').innerText = nationalIncome.toFixed(2);
+        }
+    </script>
+</body>
+</html>
